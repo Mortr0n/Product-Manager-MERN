@@ -1,38 +1,55 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  font-size: 50px;
+  background: -webkit-linear-gradient(30deg, rgba(10,31,255,1) 22%, rgba(5,140,143,1) 58%, rgba(0,212,255,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+/* h1 {
+  color: linear-gradient(142deg, rgba(10,31,255,1) 22%, rgba(5,140,143,1) 58%, rgba(0,212,255,1) 100%);
+} */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.productForm {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.formBlock {
+  background-color: aliceblue;
+  margin: 10px 0 0 0;
+  padding: 5px;
+  border: 2px solid lightblue;
+  border-radius: 5px;
+  width: 20rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.submitButtons {
+  background-color: aqua;
+  padding: 5px 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 2px solid lightblue;
+}
+
+.listBlocks {
+  width: 20rem;
+  border: 2px solid darkblue;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.listItems {
+  font-size: 1.5rem;
+  color: blue;
 }

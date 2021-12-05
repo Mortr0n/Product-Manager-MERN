@@ -25,22 +25,25 @@ const ProductForm = () => {
 
 
     return(
-        // onChange to update firstName and lastName
-        <form onSubmit={onSubmitHandler}>
-            <p>
+        <div>
+            <h1>Enter New Product</h1>
+        {/* // onChange to update firstName and lastName */}
+        <form className="productForm" onSubmit={onSubmitHandler}>
+            <div className="formBlock">
                 <label>Title</label><br/>
                 <input type="text" onChange={(e)=>setTitle(e.target.value)}/>
-            </p>
-            <p>
+            </div>
+            <div className="formBlock">
                 <label>Price</label><br/>
                 <input type="text" onChange={(e)=>setPrice(e.target.value)}/>
-            </p>
-            <p>
+            </div>
+            <div className="formBlock">
                 <label>Description</label><br/>
                 <input type="text" onChange={(e)=>setDescription(e.target.value)}/>
-            </p>
-            <input type="submit"/>
+            </div>
+            <input className="submitButtons" type="submit"/>
         </form>
+        </div>
     )
 
 }

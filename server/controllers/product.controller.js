@@ -30,4 +30,13 @@ module.exports = {
         .catch((err) => console.log(err));
     },
 
+    getOneProduct: (req, res) =>{
+        Product.findOne({ _id: req.params.id })
+            .then((oneProduct) => {
+                console.log(oneProduct);
+                res.json(oneProduct);
+            })
+            .catch((err) => res.status(400).json({ errMessage: err }));
+    },
+
 }
