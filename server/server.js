@@ -1,38 +1,14 @@
-.DS_STORE
-node_modules
-scripts/flow/*/.flowconfig
-.flowconfig
-*~
-*.pyc
-.grunt
-_SpecRunner.html
-__benchmarks__
-build/
-remote-repo/
-coverage/
-.module-cache
-fixtures/dom/public/react-dom.js
-fixtures/dom/public/react.js
-test/the-files-to-test.generated.js
-*.log*
-chrome-user-data
-*.sublime-project
-*.sublime-workspace
-.idea
-*.iml
-.vscode
-*.swp
-*.swo
+const express = require('express');
+const cors = require('cors')
+const app = express();
 
-packages/react-devtools-core/dist
-packages/react-devtools-extensions/chrome/build
-packages/react-devtools-extensions/chrome/*.crx
-packages/react-devtools-extensions/chrome/*.pem
-packages/react-devtools-extensions/firefox/build
-packages/react-devtools-extensions/firefox/*.xpi
-packages/react-devtools-extensions/firefox/*.pem
-packages/react-devtools-extensions/shared/build
-packages/react-devtools-extensions/.tempUserDataDir
-packages/react-devtools-inline/dist
-packages/react-devtools-shell/dist
-packages/react-devtools-scheduling-profiler/dist
+require('./config/mongoose.config');
+app.use(cors());
+
+app.use(express.json(), express.urlencoded({ extended: true }));
+
+require('./routes/product.routes')(app);
+
+
+const port = 8000;
+app.listen(port, () => console.log(`Listening at Port: ${port}`));
