@@ -14,7 +14,7 @@ const Main = () => {
                 setProducts(res.data);
                 setLoaded(true);
             });
-    }, [products.length])
+    }, [])
 
     const removeFromDom = (productId) => {
         console.log(products);
