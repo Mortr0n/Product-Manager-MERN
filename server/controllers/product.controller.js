@@ -39,4 +39,13 @@ module.exports = {
             .catch((err) => res.status(400).json({ errMessage: err }));
     },
 
+    deleteOneProduct: (req, res) => {
+        Product.findOneAndDelete({ _id: req.params.id })
+            .then((productToDelete) => {
+                console.log(productToDelete);
+                res.json(personToDelete)
+            })
+            .catch((err) => res.status(400).json({errMessage: err}))
+    },
+
 }
