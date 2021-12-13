@@ -40,12 +40,25 @@ module.exports = {
     },
 
     deleteOneProduct: (req, res) => {
-        Product.findOneAndDelete({ _id: req.params.id })
+        Product.findByIdAndDelete({ _id: req.params.id })
             .then((productToDelete) => {
                 console.log(productToDelete);
-                res.json(personToDelete)
+                res.json(productToDelete);
             })
             .catch((err) => res.status(400).json({errMessage: err}))
     },
+
+    updateOneProduct: (req, res) => {
+        Product.findByIdAndUpdate(
+            { _id: req.params.id },
+            req.body,
+            { new: true, runValidators: true },
+            )
+            .then((updatedProduct) => {
+                console.log(updatedProduct);
+                res.json(updatedProduct);
+            })
+            .catch((err) => res.status(400).json(err));            
+    }
 
 }

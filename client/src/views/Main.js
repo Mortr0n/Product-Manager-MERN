@@ -6,6 +6,7 @@ import axios from 'axios';
 const Main = () => {
     const [ products, setProducts ] = useState([]);
     const [ loaded, setLoaded ] = useState(false);
+    const [ toggler, setToggler ] = useState(false);
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/products')
@@ -13,8 +14,9 @@ const Main = () => {
                 console.log(res.data);
                 setProducts(res.data);
                 setLoaded(true);
-            });
-    }, [])
+            })
+            .catch((err) => console.log(err.response.data));
+    }, [toggler])
 
     const removeFromDom = (productId) => {
         console.log(products);
@@ -25,9 +27,9 @@ const Main = () => {
 
     return (
         <div>
-            <ProductForm />
+            <ProductForm setToggler={setToggler} toggler={toggler}/>
             <hr/>
-            { loaded && <ProductList products={products} removeFromDom={removeFromDom}/> }
+            { loaded && <ProductList products={products} setProducts={setProducts} removeFromDom={removeFromDom} setToggler={setToggler} toggler={toggler} /> }
         </div>
     )
 }
