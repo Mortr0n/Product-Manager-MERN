@@ -1,38 +1,23 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
 const ProductForm = (props) => {
-    // set form items to state for tracking
-    const [ title, setTitle ] = useState("");
-    const [ price, setPrice ] = useState("");
-    const [ description, setDescription ] = useState("");
-    const {toggler, setToggler} = props;
+    // state and props notice the onSubmit coming from Main for creating products
+    const { initialTitle, initialPrice, initialDescription, onSubmitProp } = props;
+    const [ title, setTitle ] = useState(initialTitle);
+    const [ price, setPrice ] = useState(initialPrice);
+    const [ description, setDescription ] = useState(initialDescription);
+
     // handler for the form submission
     const onSubmitHandler = (e) => {
         // prevent default submit page reload
         e.preventDefault();
-        // make a post request to create a new person
-        axios.post('http://localhost:8000/api/products', {
-            // Using shortcut syntax for these objects
-            title,  
-            price, 
-            description
-        })
-            .then((res)=>{
-                console.log(res);
-                setToggler(!toggler);
-            })
-            
-            // may want to later set up to change the res.status on error
-            // .catch((err) => res.status(400).json({ errMessage: err }));
-            .catch((err)=>console.log(err))
+        onSubmitProp({title, price, description});
     }
-
 
     return(
         <div>
             <h1>Enter New Product</h1>
-        {/* // onChange to update firstName and lastName */}
+        {/* // onChange to update firstName and lastName and description*/}
         <form className="productForm" onSubmit={onSubmitHandler}>
             <div className="formBlock">
                 <label>Title</label><br/>

@@ -2,7 +2,7 @@
 const Product = require('../models/product.model');
 
 module.exports = {
-// test controller
+// test controller can remove later
     index: (req, res) => {
         res.json({ message: "Hello World"});
     },

@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { navigate } from '@reach/router';
-
+import DeleteButton from './DeleteButton';
+// May want to set as a view later
 const EditProduct = (props) => {
     // set form items to state for tracking
     const [ title, setTitle ] = useState("");
     const [ price, setPrice ] = useState("");
     const [ description, setDescription ] = useState("");
-    const {toggler, setToggler, id} = props;
-
+    const { id } = props;
+    // getting the product to edit and setting state
     useEffect(() => {
         axios.get(`http://localhost:8000/api/products/${id}`)
             .then((res) => {
@@ -36,9 +37,6 @@ const EditProduct = (props) => {
                 console.log(res);
                 navigate('/products');
             })
-            
-            // may want to later set up to change the res.status on error
-            // .catch((err) => res.status(400).json({ errMessage: err }));
             .catch((err)=>console.log(err))
     }
 
@@ -69,7 +67,11 @@ const EditProduct = (props) => {
                 value={description}
                 onChange={(e)=>setDescription(e.target.value)}/>
             </div>
-            <input className="submitButtons" type="submit"/>
+            <div className='mt-2'>
+                <input className="btn btn-primary mb-2 me-2" type="submit"/>
+                <DeleteButton productId={id} successCallback={()=>navigate('/')}/>
+            </div>
+
         </form>
         </div>
     )
